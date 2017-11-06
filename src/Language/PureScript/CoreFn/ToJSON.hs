@@ -193,7 +193,7 @@ caseAlternativeToJSON :: CaseAlternative Ann -> Value
 caseAlternativeToJSON (CaseAlternative bs r') =
   let isGuarded = isLeft r'
   in object
-      [ T.pack "binders"     .= toJSON (map binderToJSON bs)
+       [ T.pack "binders"     .= toJSON (map binderToJSON bs)
       , T.pack "isGuarded"   .= toJSON isGuarded
       , T.pack (if isGuarded then "expressions" else "expression")
          .= case r' of
