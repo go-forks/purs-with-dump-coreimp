@@ -45,8 +45,10 @@ sourceSpanToJSON (SourceSpan _ spanStart spanEnd) =
          ]
 
 annToJSON :: Ann -> Value
-annToJSON (ss, _, _, m) = object [ T.pack "sourceSpan"  .= sourceSpanToJSON ss
+annToJSON (ss, c, t, m) = object [ T.pack "sourceSpan"  .= sourceSpanToJSON ss
+                                 , T.pack "comments"    .= toJSON c
                                  , T.pack "meta"        .= maybe Null metaToJSON m
+                                 , T.pack "type"        .= maybe Null toJSON t
                                  ]
 
 literalToJSON :: (a -> Value) -> Literal a -> Value
